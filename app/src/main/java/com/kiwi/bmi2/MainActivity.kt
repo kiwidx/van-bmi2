@@ -11,14 +11,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)  //inflate類似給binding設定初值
-        setContentView(binding.root)    //到binding的根目錄拿值
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)    //get view
     }
 
     fun bmi(view: View){
         var weight = binding.edWeight.text.toString().toFloat()
-        var height = binding.edWeight.text.toString().toFloat()
-        val bmi = weight /(height*height)
+        var height = binding.edHeight.text.toString().toFloat()
+        var bmi = weight / (height * height)
         Log.d("BMI", bmi.toString())  //彈出對話視窗顯示結果
     }
 }
