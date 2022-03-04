@@ -17,9 +17,9 @@ fun main(){
         times++
         println("第 " + times + " 次輸入： ")
         num = readLine()!!.toInt()
-        if(num > max || num < min){
+        if(num > max || num < min){     //錯誤範圍
             println("input number isn't in correct range!!")
-        }else{
+        }else{      //change input number to range boundary
             if(num > secret){
                 max = num
             }else if(num < secret){
@@ -27,7 +27,7 @@ fun main(){
             }else if(num == secret){
                 println("You got it!")
             }
-            if(num != secret && times >= 6){
+            if(num != secret && times >= 6){    //if you input six times but the number is still error
                 println("You have failed!!")
                 println("正解: " + secret)
                 break
