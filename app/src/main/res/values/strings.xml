@@ -4,4 +4,6 @@
     <string name="help">help</string>
     <string name="weight">weight：</string>
     <string name="height">height：</string>
+    <string name="calculate">calculate</string>
+    <string name="calculate_bmi">Calculate BMI</string>
 </resources>
