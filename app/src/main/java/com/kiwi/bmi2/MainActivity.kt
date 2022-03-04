@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.kiwi.bmi2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,5 +20,6 @@ class MainActivity : AppCompatActivity() {
         var height = binding.edHeight.text.toString().toFloat()
         var bmi = weight / (height * height)
         Log.d("BMI", bmi.toString())  //彈出對話視窗顯示結果
+        Toast.makeText(this, bmi.toString(), Toast.LENGTH_LONG).show()  //將bmi結果以浮動Toast方式短暫顯示在app頁面下方
     }
 }
