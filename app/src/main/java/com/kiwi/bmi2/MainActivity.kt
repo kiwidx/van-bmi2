@@ -10,7 +10,8 @@ import androidx.appcompat.app.AlertDialog
 import com.kiwi.bmi2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
+    val TAG = MainActivity::class.java.simpleName
+    val REQUEST_DISPLAY_BMI = 16
     private lateinit var binding: ActivityMainBinding  //lateinit告訴機器這個變數的值晚一點給，不會是null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +38,15 @@ class MainActivity : AppCompatActivity() {
         binding.tvBmi.text = "Your BMI is $bmi"
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra("BMI",bmi)
-        startActivity(intent)
+        startActivityForResult(intent, REQUEST_DISPLAY_BMI)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d(TAG, "onActivityResult: ")
+        if(requestCode == REQUEST_DISPLAY_BMI && resultCode == RESULT_OK){
+            Log.d(TAG, "back from ResultActivity")
+        }
+    }
 
 }
