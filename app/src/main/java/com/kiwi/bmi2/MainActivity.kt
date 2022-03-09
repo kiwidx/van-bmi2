@@ -1,11 +1,13 @@
 package com.kiwi.bmi2
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AlertDialog
 import com.kiwi.bmi2.databinding.ActivityMainBinding
 
@@ -46,6 +48,21 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onActivityResult: ")
         if(requestCode == REQUEST_DISPLAY_BMI && resultCode == RESULT_OK){
             Log.d(TAG, "back from ResultActivity")
+        }
+    }
+    //contract合約方法取得ResultActivity的回傳值
+    class NameContract : ActivityResultContract<Unit, String>(){
+        override fun createIntent(context: Context, input: Unit?): Intent {
+            return Intent(context, ResultActivity::class.java)
+        }
+
+        override fun parseResult(resultCode: Int, intent: Intent?): String {
+            if (resultCode == RESULT_OK) {
+                val name = intent!!.getStringExtra("NAME")
+                return name!!
+            } else {
+                return "No name"
+            }
         }
     }
 
