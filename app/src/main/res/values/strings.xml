@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Bmi2</string>
-    <string name="caculate_bmi">Caculate Bmi</string>
     <string name="help">help</string>
     <string name="weight">weight：</string>
     <string name="height">height：</string>
-    <string name="calculate">calculate</string>
     <string name="calculate_bmi">Calculate BMI</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.kiwi.bmi2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import com.kiwi.bmi2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding  //lateinit告訴機器這個變數的值晚一點給，不會是null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +23,22 @@ class MainActivity : AppCompatActivity() {
         var height = binding.edHeight.text.toString().toFloat()
         var bmi = weight / (height * height)
         Log.d("BMI", bmi.toString())  //彈出對話視窗顯示結果
-        Toast.makeText(this, bmi.toString(), Toast.LENGTH_LONG).show()  //將bmi結果以浮動Toast方式短暫顯示在app頁面下方
+//        Log.d("MainActivity", "clicked")//.d:debug message   app上線take out
+        Toast.makeText(this, "Your BMI $bmi", Toast.LENGTH_LONG).show()  //將bmi結果以浮動Toast方式短暫顯示在app頁面下方
         AlertDialog.Builder(this)   //anonymous方式建立Builder
             .setMessage(bmi.toString())    //show dialog message
             .setTitle("Your BMI")          //dialog title
-            .setPositiveButton("OK",null)   //check ok and then close the dialog
-            .setNeutralButton("Cancel",null)//check cancel and then close the dialog
-            .show()
+            .setPositiveButton("OK",) { dialog, which ->
+                binding.edWeight.setText("")
+                binding.edHeight.setText("")
+            }  //check ok and then close the dialog
+            //.setNeutralButton("Cancel",null)//check cancel and then close the dialog
+            //.show()
+        binding.tvBmi.text = "Your BMI is $bmi"
+        val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra("BMI",bmi)
+        startActivity(intent)
     }
+
+
 }
